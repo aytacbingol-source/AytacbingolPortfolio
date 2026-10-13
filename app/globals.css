@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Monoton palet. Tüm renkler buradan gelir; değiştirmek için yalnızca bu değerleri düzenleyin. */
+:root {
+  --paper: #ffffff;
+  --surface: #f1f1f0;
+  --ink: #000000;
+  --muted: #666666;
+  --line: #d6d6d4;
+  --axis: #9a9a98;
+}
+.dark {
+  --paper: #000000;
+  --surface: #121212;
+  --ink: #ffffff;
+  --muted: #8f8f8f;
+  --line: #2b2b2b;
+  --axis: #5c5c5c;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-axis: var(--axis);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --radius-*: initial;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+* {
+  border-radius: 0 !important;
+}
+/* Tek istisna: aks balonları */
+.round {
+  border-radius: 9999px !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Aks çizgisi: Revit/CAD'deki uzun-kısa kesik çizgi (center line) */
+.axis-v {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--axis) 0 18px,
+    transparent 18px 24px,
+    var(--axis) 24px 27px,
+    transparent 27px 33px
+  );
+  width: 1px;
+}
+.axis-h {
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--axis) 0 18px,
+    transparent 18px 24px,
+    var(--axis) 24px 27px,
+    transparent 27px 33px
+  );
+  height: 1px;
+}
+
+/* Sayfa açılışındaki tek koreografi: akslar çizilir, sonra isim belirir */
+@keyframes draw-down {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes draw-right {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.anim-draw-down { transform-origin: top; animation: draw-down 900ms cubic-bezier(.6,0,.2,1) both; }
+.anim-draw-right { transform-origin: left; animation: draw-right 900ms cubic-bezier(.6,0,.2,1) both; }
+.anim-appear { animation: appear 700ms cubic-bezier(.2,0,0,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-draw-down, .anim-draw-right, .anim-appear { animation: none; }
+}
