@@ -1,21 +1,21 @@
 import Image from "next/image";
-import { PlanDrawing } from "./PlanDrawing";
+import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 export function ProjectImage({
   src,
   seed,
   alt,
   priority,
-  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
-  fit,
+  tone,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
 }: {
-  fit?: "slice" | "meet";
   src?: string;
   seed: string;
   alt: string;
   priority?: boolean;
+  tone?: "light" | "mid";
   sizes?: string;
 }) {
-  if (!src) return <PlanDrawing seed={seed} fit={fit} />;
+  if (!src) return <PhotoPlaceholder seed={seed} tone={tone} />;
   return <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />;
 }

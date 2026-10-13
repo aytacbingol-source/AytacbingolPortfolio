@@ -25,16 +25,28 @@ export type Project = {
   status: Localized;
   summary: Localized;
   body: Localized[];
-  /** /public altındaki görseller, ilk görsel kapak olur. Boşsa otomatik plan çizimi gösterilir. */
+  /** Projenin yapıldığı ofis: offices dizisindeki sıra numarası */
+  office: number;
+  /** /public altındaki görseller, ilk görsel kapak olur. Boşsa yer tutucu görsel gösterilir. */
   images: string[];
+  /** Görsel yokken galeride gösterilecek örnek fotoğraf sayısı (yalnızca örnek içerik için) */
+  sampleCount?: number;
   featured?: boolean;
 };
+
+// ÖRNEK: Çalıştığın ofisler. Projeler bu gruplara göre listelenir.
+export const offices: { name: string; period: string }[] = [
+  { name: "Ofis A (örnek)", period: "2023 – 2026" },
+  { name: "Ofis B (örnek)", period: "2019 – 2023" },
+];
 
 // ÖRNEK İÇERİK: Aşağıdaki projeler yer tutucudur. Kendi projelerinle değiştir.
 // Görselleri /public/projects/<slug>/ klasörüne koyup images dizisine "/projects/<slug>/01.jpg" gibi ekle.
 export const projects: Project[] = [
   {
     slug: "ilkokul-kampusu",
+    office: 0,
+    sampleCount: 6,
     category: "education",
     title: { tr: "İlkokul Kampüsü", en: "Primary School Campus" },
     year: "2025",
@@ -61,6 +73,8 @@ export const projects: Project[] = [
   },
   {
     slug: "bahce-konutlari",
+    office: 0,
+    sampleCount: 5,
     category: "residential",
     title: { tr: "Bahçe Konutları", en: "Garden Housing" },
     year: "2024",
@@ -83,6 +97,8 @@ export const projects: Project[] = [
   },
   {
     slug: "dagitim-merkezi",
+    office: 1,
+    sampleCount: 3,
     category: "logistics",
     title: { tr: "Bölgesel Dağıtım Merkezi", en: "Regional Distribution Centre" },
     year: "2023",
@@ -105,6 +121,8 @@ export const projects: Project[] = [
   },
   {
     slug: "konsept-magaza",
+    office: 1,
+    sampleCount: 4,
     category: "retail",
     title: { tr: "Konsept Mağaza", en: "Concept Store" },
     year: "2024",
@@ -126,6 +144,8 @@ export const projects: Project[] = [
   },
   {
     slug: "teknoloji-ofisi",
+    office: 0,
+    sampleCount: 4,
     category: "office",
     title: { tr: "Teknoloji Ofisi", en: "Technology Office" },
     year: "2025",
@@ -148,6 +168,8 @@ export const projects: Project[] = [
   },
   {
     slug: "kiyi-oteli",
+    office: 1,
+    sampleCount: 7,
     category: "hotel",
     title: { tr: "Kıyı Oteli", en: "Coastal Hotel" },
     year: "2023",
@@ -170,6 +192,8 @@ export const projects: Project[] = [
   },
   {
     slug: "avlu-restoran",
+    office: 1,
+    sampleCount: 3,
     category: "restaurant",
     title: { tr: "Avlu Restoran", en: "Courtyard Restaurant" },
     year: "2022",
@@ -191,6 +215,8 @@ export const projects: Project[] = [
   },
   {
     slug: "ilce-hastanesi",
+    office: 0,
+    sampleCount: 3,
     category: "healthcare",
     title: { tr: "İlçe Hastanesi", en: "District Hospital" },
     year: "2024",
@@ -212,6 +238,8 @@ export const projects: Project[] = [
   },
   {
     slug: "kent-meydani-yarismasi",
+    office: 1,
+    sampleCount: 4,
     category: "competition",
     title: { tr: "Kent Meydanı Yarışması", en: "City Square Competition" },
     year: "2022",

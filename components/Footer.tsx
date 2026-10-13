@@ -9,9 +9,9 @@ export function Footer({ t }: { t: Dict }) {
           © {new Date().getFullYear()} {site.name}. {t.footer.rights}
         </p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
-          <li><a className="hover:text-ink" href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><a className="hover:text-ink" href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
           <li><a className="hover:text-ink" href={site.bimgoal} target="_blank" rel="noreferrer">BIMGoal</a></li>
+          <li><a className="hover:text-ink" href="#main">{t.footer.top}</a></li>
         </ul>
       </div>
     </footer>

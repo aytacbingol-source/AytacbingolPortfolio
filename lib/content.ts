@@ -24,13 +24,23 @@ export const bimAreas: { title: string; text: Localized }[] = [
   },
 ];
 
-export const bimgoalTools: { name: Localized; text: Localized }[] = [
+export const toolCategories = {
+  cad: { tr: "CAD → Revit", en: "CAD → Revit" },
+  modeling: { tr: "Modelleme", en: "Modeling" },
+  model: { tr: "Model yönetimi", en: "Model management" },
+  docs: { tr: "Dokümantasyon", en: "Documentation" },
+} satisfies Record<string, Localized>;
+
+export type ToolCategory = keyof typeof toolCategories;
+
+export const bimgoalTools: { name: Localized; text: Localized; category: ToolCategory }[] = [
   {
     name: { tr: "CAD'den Revit'e mahal verisi", en: "CAD-to-Revit room data" },
     text: {
       tr: "CAD çizimindeki mahal bilgilerini Revit odalarına aktarır.",
       en: "Transfers room information from CAD drawings into Revit rooms.",
     },
+    category: "cad",
   },
   {
     name: { tr: "Otomatik kaplama", en: "Automated finishes" },
@@ -38,6 +48,7 @@ export const bimgoalTools: { name: Localized; text: Localized }[] = [
       tr: "Mahal bilgisine göre döşeme, duvar ve tavan kaplamalarını oluşturur.",
       en: "Creates floor, wall and ceiling finishes from room data.",
     },
+    category: "modeling",
   },
   {
     name: { tr: "Eleman filtreleme", en: "Element filtering" },
@@ -45,6 +56,7 @@ export const bimgoalTools: { name: Localized; text: Localized }[] = [
       tr: "Modeldeki elemanları parametrelere göre hızlıca bulur ve seçer.",
       en: "Finds and selects model elements by their parameters.",
     },
+    category: "model",
   },
   {
     name: { tr: "Metraj", en: "Quantity takeoffs" },
@@ -52,6 +64,7 @@ export const bimgoalTools: { name: Localized; text: Localized }[] = [
       tr: "Modelden metraj listelerini çıkarır.",
       en: "Extracts quantity lists from the model.",
     },
+    category: "docs",
   },
   {
     name: { tr: "Pafta hazırlığı", en: "Sheet preparation" },
@@ -59,25 +72,50 @@ export const bimgoalTools: { name: Localized; text: Localized }[] = [
       tr: "Paftaları ve görünüşleri toplu olarak hazırlar.",
       en: "Prepares sheets and views in batches.",
     },
+    category: "docs",
+  },
+];
+
+export const services: { title: Localized; text: Localized }[] = [
+  {
+    title: { tr: "Mimari tasarım", en: "Architectural design" },
+    text: {
+      tr: "Konseptten uygulama projesine kadar, tüm aşamaları BIM ile yürütülen mimari tasarım.",
+      en: "Architectural design from concept to construction documents, with every stage run in BIM.",
+    },
+  },
+  {
+    title: { tr: "BIM koordinasyonu", en: "BIM coordination" },
+    text: {
+      tr: "Model kurulumu, ofis standartları, disiplinler arası koordinasyon ve çakışma kontrolü.",
+      en: "Model setup, office standards, cross-discipline coordination and clash checking.",
+    },
+  },
+  {
+    title: { tr: "Revit otomasyonu", en: "Revit automation" },
+    text: {
+      tr: "Ekibinizin tekrar eden işleri için Revit API ve pyRevit ile özel araçlar.",
+      en: "Custom tools on the Revit API and pyRevit for your team's repetitive tasks.",
+    },
+  },
+  {
+    title: { tr: "Eğitim ve danışmanlık", en: "Training and consulting" },
+    text: {
+      tr: "Revit ve BIM süreçlerine geçiş yapan ekipler için eğitim ve iş akışı danışmanlığı.",
+      en: "Training and workflow consulting for teams moving to Revit and BIM.",
+    },
   },
 ];
 
 // ÖRNEK İÇERİK: kendi deneyim ve eğitim bilgilerinle değiştir.
 export const experience: { period: string; title: Localized; place: string }[] = [
   { period: "2023 –", title: { tr: "Kurucu", en: "Founder" }, place: "BIMGoal" },
-  { period: "2020 – 2023", title: { tr: "BIM Koordinatörü", en: "BIM Coordinator" }, place: "Mimarlık Ofisi" },
-  { period: "2017 – 2020", title: { tr: "Mimar", en: "Architect" }, place: "Mimarlık Ofisi" },
+  { period: "2023 – 2026", title: { tr: "BIM Koordinatörü", en: "BIM Coordinator" }, place: "Ofis A (örnek)" },
+  { period: "2019 – 2023", title: { tr: "Mimar", en: "Architect" }, place: "Ofis B (örnek)" },
 ];
 
 export const education: { period: string; title: Localized; place: string }[] = [
-  { period: "2012 – 2017", title: { tr: "Mimarlık Lisans", en: "B.Arch." }, place: "Üniversite" },
+  { period: "2014 – 2019", title: { tr: "Mimarlık Lisans", en: "B.Arch." }, place: "Üniversite (örnek)" },
 ];
 
-export const software = [
-  "Revit",
-  "Revit API (C#)",
-  "pyRevit",
-  "Dynamo",
-  "AutoCAD",
-  "Navisworks",
-];
+export const software = ["Revit", "Revit API (C#)", "pyRevit", "Dynamo", "AutoCAD", "Navisworks"];

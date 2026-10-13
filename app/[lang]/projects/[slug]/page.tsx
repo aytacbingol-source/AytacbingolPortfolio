@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProjectImage } from "@/components/ProjectImage";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { categories, getProject, projects } from "@/lib/projects";
+import { categories, getProject, offices, projects } from "@/lib/projects";
 
 type Params = Promise<{ lang: string; slug: string }>;
 
@@ -33,6 +33,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
     { k: t.projects.year, v: p.year },
     { k: t.projects.location, v: p.location[lang] },
     p.area ? { k: t.projects.area, v: p.area } : null,
+    { k: t.projects.office, v: offices[p.office]?.name ?? "" },
     { k: t.projects.role, v: p.role[lang] },
     { k: t.projects.status, v: p.status[lang] },
   ].filter(Boolean) as { k: string; v: string }[];
@@ -42,7 +43,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   return (
     <article>
       <div className="mx-auto max-w-[1440px] px-5 pt-12 md:px-10 md:pt-20">
-        <Link href={`/${lang}/projects`} className="text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
+        <Link href={`/${lang}#projects`} className="text-sm text-muted underline-offset-4 hover:text-ink hover:underline">
           {t.projects.back}
         </Link>
         <h1 className="mt-6 max-w-[14ch] text-5xl font-semibold leading-[0.95] tracking-[-0.04em] md:text-8xl">
@@ -51,7 +52,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       </div>
 
       <div className="relative mt-12 aspect-[16/10] w-full md:aspect-[21/9]">
-        <ProjectImage src={p.images[0]} seed={p.slug} alt={p.title[lang]} priority sizes="100vw" fit="meet" />
+        <ProjectImage src={p.images[0]} seed={p.slug} alt={p.title[lang]} priority sizes="100vw" />
       </div>
 
       <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-20 md:grid-cols-4 md:px-10 md:py-28">
