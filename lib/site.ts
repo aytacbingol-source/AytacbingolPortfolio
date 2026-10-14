@@ -2,7 +2,7 @@
 export const site = {
   name: "Aytaç Bingöl",
   domain: "aytacbingol.com",
-  url: "https://aytacbingol.com",
+  url: "https://www.aytacbingol.com",
   // TODO: kullanmak istediğin e-posta adresiyle değiştir
   email: "iletisim@aytacbingol.com",
   // TODO: kişisel LinkedIn profil adresini ekle
