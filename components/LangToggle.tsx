@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
+import { saveScrollForLangSwitch } from "@/lib/langScroll";
 
 export function LangToggle({ lang, label }: { lang: Locale; label: string }) {
   const pathname = usePathname() || `/${lang}`;
@@ -21,6 +22,8 @@ export function LangToggle({ lang, label }: { lang: Locale; label: string }) {
             key={l}
             href={href}
             hrefLang={l}
+            scroll={false}
+            onClick={() => saveScrollForLangSwitch(href)}
             aria-label={label}
             className="grid w-9 place-items-center text-muted hover:text-ink"
           >

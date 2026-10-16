@@ -118,4 +118,4 @@ export const education: { period: string; title: Localized; place: string }[] = 
   { period: "2014 – 2019", title: { tr: "Mimarlık Lisans", en: "B.Arch." }, place: "Üniversite (örnek)" },
 ];
 
-export const software = ["Revit", "Revit API (C#)", "pyRevit", "Dynamo", "AutoCAD", "Navisworks"];
+export const software = ["Revit", "Revit API (C#)", "BIMGoal", "pyRevit", "Dynamo", "AutoCAD", "Navisworks"];

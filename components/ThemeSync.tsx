@@ -2,9 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
+import { restoreScrollAfterLangSwitch } from "@/lib/langScroll";
 
-// Dil değişince (TR ↔ EN) sayfanın kökü yeniden kurulur ve <html> üzerindeki tema sınıfı kaybolur.
-// Bu bileşen her sayfa geçişinde kayıtlı temayı (yoksa sistem temasını) yeniden uygular.
+// Dil değişince (TR ↔ EN) sayfanın kökü yeniden kurulur: <html> üzerindeki tema sınıfı kaybolur
+// ve sayfa başa döner. Bu bileşen her sayfa geçişinde kayıtlı temayı (yoksa sistem temasını)
+// yeniden uygular ve dil değişimiyle gelindiyse okuyucuyu kaldığı yere geri götürür.
 export function ThemeSync() {
   const pathname = usePathname();
   useLayoutEffect(() => {
@@ -16,6 +18,7 @@ export function ThemeSync() {
       dark = matchMedia("(prefers-color-scheme: dark)").matches;
     }
     document.documentElement.classList.toggle("dark", dark);
+    restoreScrollAfterLangSwitch(pathname);
   }, [pathname]);
   return null;
 }
