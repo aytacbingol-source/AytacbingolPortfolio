@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ThemeSync } from "@/components/ThemeSync";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
@@ -49,6 +50,7 @@ export default async function LangLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-svh flex-col">
+        <ThemeSync />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-3 focus:py-2 focus:text-paper">
           {lang === "tr" ? "İçeriğe geç" : "Skip to content"}
         </a>

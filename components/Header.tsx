@@ -35,9 +35,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dict }) {
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              className={`underline-offset-[6px] transition-colors hover:text-ink hover:underline ${
-                isActive(l.href) ? "text-ink underline" : "text-muted"
-              }`}
+              className={`transition-colors hover:text-ink ${isActive(l.href) ? "text-ink" : "text-muted"}`}
             >
               {l.label}
             </Link>
