@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useState } from "react";
 import type { Dict, Locale } from "@/lib/i18n";
 import { categories, offices, type Category, type Project } from "@/lib/projects";
@@ -88,16 +87,24 @@ export function ProjectsSection({ projects, lang, dict }: { projects: Project[];
               <article key={p.slug} className="grid gap-6 border-b border-line py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-10">
                 <div>
                   <h4 className="text-2xl font-medium tracking-[-0.025em]">
-                    <Link href={`/${lang}/projects/${p.slug}`} className="underline-offset-4 hover:underline">
+                    <button
+                      type="button"
+                      onClick={() => setViewer({ project: ordered.indexOf(p), image: 0 })}
+                      className="text-left underline-offset-4 hover:underline"
+                    >
                       {p.title[lang]}
-                    </Link>
+                    </button>
                   </h4>
                   <div className="mt-4">
                     <ProjectFacts p={p} lang={lang} t={t} />
                   </div>
-                  <Link href={`/${lang}/projects/${p.slug}`} className="mt-5 inline-block text-sm underline underline-offset-4">
+                  <button
+                    type="button"
+                    onClick={() => setViewer({ project: ordered.indexOf(p), image: 0 })}
+                    className="mt-5 inline-block text-sm underline underline-offset-4"
+                  >
                     {t.view}
-                  </Link>
+                  </button>
                 </div>
                 <Gallery
                   p={p}

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Dict, Locale } from "@/lib/i18n";
 import type { Project } from "@/lib/projects";
@@ -90,7 +89,8 @@ export function ProjectViewer({
     const html = document.documentElement;
     const prevOverflow = html.style.overflow;
     html.style.overflow = "hidden";
-    closeBtn.current?.focus();
+    // Klavye kullanıcıları için odak kapat düğmesinde; fareyle açınca çerçeve görünmesin
+    closeBtn.current?.focus({ preventScroll: true, focusVisible: false } as FocusOptions);
     return () => {
       removeEventListener("popstate", onPop);
       html.style.overflow = prevOverflow;
@@ -133,7 +133,7 @@ export function ProjectViewer({
         <div className="flex items-start justify-between gap-6">
           <div className="min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/55">{t.viewer.label}</p>
-            <h2 key={p.slug} className="viewer-in mt-1 truncate text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
+            <h2 key={p.slug} className="viewer-in mt-1 truncate py-1 text-2xl font-semibold leading-tight tracking-[-0.025em] md:text-4xl">
               {p.title[lang]}
             </h2>
           </div>
@@ -169,8 +169,9 @@ export function ProjectViewer({
                   <button
                     type="button"
                     onClick={() => goImage(-1)}
+                    onMouseDown={(e) => e.preventDefault()}
                     aria-label={t.viewer.prevImage}
-                    className="absolute inset-y-0 left-0 grid w-16 place-items-center bg-gradient-to-r from-black/40 to-transparent opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
+                    className="viewer-arrow absolute inset-y-0 left-0 grid w-16 place-items-center bg-gradient-to-r from-black/40 to-transparent opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
                   >
                     <svg viewBox="0 0 20 20" className="h-6 w-6" aria-hidden="true">
                       <path d="M12 4 L6 10 L12 16" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -179,8 +180,9 @@ export function ProjectViewer({
                   <button
                     type="button"
                     onClick={() => goImage(1)}
+                    onMouseDown={(e) => e.preventDefault()}
                     aria-label={t.viewer.nextImage}
-                    className="absolute inset-y-0 right-0 grid w-16 place-items-center bg-gradient-to-l from-black/40 to-transparent opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
+                    className="viewer-arrow absolute inset-y-0 right-0 grid w-16 place-items-center bg-gradient-to-l from-black/40 to-transparent opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 group-hover:opacity-100"
                   >
                     <svg viewBox="0 0 20 20" className="h-6 w-6" aria-hidden="true">
                       <path d="M8 4 L14 10 L8 16" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -209,25 +211,19 @@ export function ProjectViewer({
                 </li>
               ))}
             </ol>
-            <Link
-              href={`/${lang}/projects/${p.slug}`}
-              className="mt-8 inline-block border border-white/25 px-4 py-2.5 text-sm hover:border-white"
-            >
-              {t.viewer.details}
-            </Link>
           </aside>
         </div>
 
         {/* Alt: önceki / sonraki proje ve kısayollar */}
         <div className="grid grid-cols-2 items-end gap-4 border-t border-white/10 pt-5 md:grid-cols-[1fr_auto_1fr]">
-          <button type="button" onClick={() => goProject(-1)} className="group min-w-0 text-left">
+          <button type="button" onClick={() => goProject(-1)} onMouseDown={(e) => e.preventDefault()} className="group min-w-0 text-left">
             <span className="block font-mono text-[10px] uppercase tracking-[0.3em] text-white/45">← {t.viewer.prev}</span>
             <span className="mt-1 block truncate text-lg text-white/80 group-hover:text-white md:text-xl">{prevP.title[lang]}</span>
           </button>
           <p className="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-white/35 md:block">
             {t.viewer.hints.join("  ·  ")}
           </p>
-          <button type="button" onClick={() => goProject(1)} className="group min-w-0 text-right">
+          <button type="button" onClick={() => goProject(1)} onMouseDown={(e) => e.preventDefault()} className="group min-w-0 text-right">
             <span className="block font-mono text-[10px] uppercase tracking-[0.3em] text-white/45">{t.viewer.next} →</span>
             <span className="mt-1 block truncate text-lg text-white/80 group-hover:text-white md:text-xl">{nextP.title[lang]}</span>
           </button>

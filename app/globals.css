@@ -108,6 +108,11 @@ html::-webkit-scrollbar {
 .viewer :focus-visible {
   outline-color: #fff;
 }
+/* Görsel değiştirme okları: çerçeve yok; klavyede odaklanınca ok görünür hale gelir */
+.viewer .viewer-arrow,
+.viewer .viewer-arrow:focus-visible {
+  outline: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .viewer-in, .viewer-overlay, .viewer-panel, .viewer-overlay.is-closing, .viewer-overlay.is-closing .viewer-panel { animation: none; }
 }

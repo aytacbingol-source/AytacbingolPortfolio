@@ -30,7 +30,7 @@ npm run build   # yayın öncesi kontrol
 
 1. Görselleri `public/projects/<slug>/` klasörüne koy (ör. `public/projects/kiyi-oteli/01.jpg`).
 2. `lib/projects.ts` içinde ilgili projenin `images` dizisine yolları ekle: `["/projects/kiyi-oteli/01.jpg", "/projects/kiyi-oteli/02.jpg"]`.
-3. İlk üç görsel ana sayfadaki galeride görünür, fazlası "+N" olarak sayılır. Hepsi proje sayfasında listelenir. Görsel yoksa yer tutucu gösterilir.
+3. İlk üç görsel ana sayfadaki galeride görünür, fazlası "+N" olarak sayılır. Görsele tıklayınca açılan tam ekran görüntüleyicide hepsi gezilebilir. Görsel yoksa yer tutucu gösterilir.
 
 Önerilen boyut: uzun kenar 2400 px, JPG, dosya başına 500 KB altı.
 
