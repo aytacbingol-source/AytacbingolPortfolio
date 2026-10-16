@@ -4,7 +4,7 @@ Mimar Aytaç Bingöl'ün kişisel portfolyosu. Next.js 16 + Tailwind CSS 4, Verc
 
 - İki dil: `/tr` ve `/en` (sağ üstteki TR/EN düğmesi)
 - Açık / koyu tema (tercih tarayıcıda saklanır, ilk açılışta sistem temasını izler)
-- Tek sayfa, numaralı bölümler: Hakkımda, Deneyim & Eğitim, Seçilmiş Mimari İşler, BIM & Yazılım, Hizmetler, İletişim
+- Tek sayfa, numaralı bölümler: Hakkımda, Deneyim & Eğitim, Mimari Projeler, BIM & Yazılım, Hizmetler, İletişim
 - Monoton palet, Inter, sıfır köşe yuvarlaklığı
 
 ## Çalıştırma

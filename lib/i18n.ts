@@ -43,7 +43,7 @@ export const dict = {
     },
     experience: { label: "Deneyim & Eğitim", work: "Deneyim", education: "Eğitim", software: "Yazılımlar" },
     projects: {
-      label: "Seçilmiş Mimari İşler",
+      label: "Mimari Projeler",
       all: "Tümü",
       empty: "Bu kategoride henüz proje yok. Başka bir kategori seç.",
       view: "Görselleri incele",
@@ -129,7 +129,7 @@ export const dict = {
     },
     experience: { label: "Experience & Education", work: "Experience", education: "Education", software: "Software" },
     projects: {
-      label: "Selected Architecture Works",
+      label: "Architectural Projects",
       all: "All",
       empty: "No projects in this category yet. Pick another category.",
       view: "View images",
