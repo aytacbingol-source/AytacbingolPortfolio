@@ -98,13 +98,6 @@ export function ProjectsSection({ projects, lang, dict }: { projects: Project[];
                   <div className="mt-4">
                     <ProjectFacts p={p} lang={lang} t={t} />
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setViewer({ project: ordered.indexOf(p), image: 0 })}
-                    className="mt-5 inline-block text-sm underline underline-offset-4"
-                  >
-                    {t.view}
-                  </button>
                 </div>
                 <Gallery
                   p={p}
