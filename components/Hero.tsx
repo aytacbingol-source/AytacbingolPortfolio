@@ -23,7 +23,27 @@ export function Hero({ lang, t }: { lang: Locale; t: Dict }) {
                 <div key={s.value + s.label.en}>
                   <dt className="sr-only">{s.label[lang]}</dt>
                   <dd className="text-4xl font-medium leading-none tracking-[-0.03em] tabular-nums">{s.value}</dd>
-                  <dd className="mt-1 text-xs text-muted">{s.label[lang]}</dd>
+                  <dd className="mt-1 text-xs text-muted">
+                    {s.label[lang].includes("BIMGoal")
+                      ? s.label[lang].split("BIMGoal").map((part, i) =>
+                          i === 0 ? (
+                            part
+                          ) : (
+                            <span key={i}>
+                              <a
+                                href={site.bimgoal}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-accent transition-opacity hover:opacity-75"
+                              >
+                                BIMGoal
+                              </a>
+                              {part}
+                            </span>
+                          ),
+                        )
+                      : s.label[lang]}
+                  </dd>
                 </div>
               ))}
             </dl>
