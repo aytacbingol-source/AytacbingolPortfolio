@@ -33,15 +33,29 @@ export function ProjectViewer({
   const [ii, setIi] = useState(start.image);
   const closeBtn = useRef<HTMLButtonElement>(null);
   const pushed = useRef(false);
+  const ignorePop = useRef(false);
+  const [closing, setClosing] = useState(false);
+  const closingRef = useRef(false);
 
   const p = projects[pi];
   const count = imageCount(p);
   const prevP = projects[(pi - 1 + projects.length) % projects.length];
   const nextP = projects[(pi + 1) % projects.length];
 
+  // Kapanış animasyonu bittikten sonra kapat
+  const OUT_MS = 320;
   const close = useCallback(() => {
-    if (pushed.current) history.back();
-    else onClose();
+    if (closingRef.current) return;
+    closingRef.current = true;
+    setClosing(true);
+    setTimeout(() => {
+      if (pushed.current) {
+        pushed.current = false;
+        ignorePop.current = true;
+        history.back();
+      }
+      onClose();
+    }, OUT_MS);
   }, [onClose]);
 
   const goImage = useCallback((d: number) => setIi((i) => (i + d + count) % count), [count]);
@@ -61,8 +75,16 @@ export function ProjectViewer({
       pushed.current = true;
     } catch {}
     const onPop = () => {
+      if (ignorePop.current) {
+        ignorePop.current = false;
+        return;
+      }
+      // Tarayıcının geri tuşu: önce kapanış animasyonu
       pushed.current = false;
-      onClose();
+      if (closingRef.current) return;
+      closingRef.current = true;
+      setClosing(true);
+      setTimeout(onClose, 320);
     };
     addEventListener("popstate", onPop);
     const html = document.documentElement;
@@ -102,11 +124,11 @@ export function ProjectViewer({
       role="dialog"
       aria-modal="true"
       aria-label={p.title[lang]}
-      className="viewer fixed inset-0 z-[60] overflow-y-auto bg-[#070707] text-white lg:overflow-hidden"
+      className={`viewer viewer-overlay fixed inset-0 z-[60] overflow-y-auto text-white lg:overflow-hidden ${closing ? "is-closing" : ""}`}
     >
       <div className="viewer-bg pointer-events-none fixed inset-0" aria-hidden="true" />
 
-      <div className="relative mx-auto grid min-h-full max-w-[1600px] grid-rows-[auto_1fr_auto] gap-6 px-5 py-6 md:px-10 lg:h-full">
+      <div className="viewer-panel relative mx-auto grid min-h-full max-w-[1600px] grid-rows-[auto_1fr_auto] gap-6 px-5 py-6 md:px-10 lg:h-full">
         {/* Üst: başlık ve kapat */}
         <div className="flex items-start justify-between gap-6">
           <div className="min-w-0">

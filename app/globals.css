@@ -69,7 +69,12 @@ html::-webkit-scrollbar {
   html { scroll-behavior: auto; }
 }
 
-/* Proje görüntüleyicisi: ince ızgara, hafif ışık ve yumuşak geçiş */
+/* Proje görüntüleyicisi: sayfanın üstüne binen bulanık katman, ince ızgara ve yumuşak açılış/kapanış */
+.viewer-overlay {
+  background: rgb(6 6 6 / 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(0.9);
+  backdrop-filter: blur(14px) saturate(0.9);
+}
 .viewer-bg {
   background-image:
     radial-gradient(60% 50% at 18% 12%, rgb(255 255 255 / 0.05), transparent 70%),
@@ -78,6 +83,21 @@ html::-webkit-scrollbar {
     linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
   background-size: auto, auto, 88px 88px, 88px 88px;
 }
+@keyframes viewer-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes viewer-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes viewer-rise-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes viewer-sink-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: translateY(8px) scale(0.99); }
+}
+.viewer-overlay { animation: viewer-fade-in 420ms ease-out both; }
+.viewer-panel { animation: viewer-rise-in 520ms cubic-bezier(.2, .8, .2, 1) 60ms both; }
+.viewer-overlay.is-closing { animation: viewer-fade-out 320ms ease-in both; }
+.viewer-overlay.is-closing .viewer-panel { animation: viewer-sink-out 280ms ease-in both; }
+
 @keyframes viewer-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -89,5 +109,5 @@ html::-webkit-scrollbar {
   outline-color: #fff;
 }
 @media (prefers-reduced-motion: reduce) {
-  .viewer-in { animation: none; }
+  .viewer-in, .viewer-overlay, .viewer-panel, .viewer-overlay.is-closing, .viewer-overlay.is-closing .viewer-panel { animation: none; }
 }
