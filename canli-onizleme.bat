@@ -8,6 +8,12 @@ echo  aytacbingol.com canli onizleme
 echo  --------------------------------
 echo.
 
+rem Yeni kurulan Node.js ve Git'i Windows henuz tanimiyorsa standart klasorlerden ekle
+if exist "%ProgramFiles%\nodejs\node.exe" set "PATH=%ProgramFiles%\nodejs;%PATH%"
+if exist "%ProgramFiles%\Git\cmd\git.exe" set "PATH=%ProgramFiles%\Git\cmd;%PATH%"
+if exist "%LocalAppData%\Programs\Git\cmd\git.exe" set "PATH=%LocalAppData%\Programs\Git\cmd;%PATH%"
+if exist "%ProgramFiles(x86)%\Git\cmd\git.exe" set "PATH=%ProgramFiles(x86)%\Git\cmd;%PATH%"
+
 where node >nul 2>nul
 if errorlevel 1 (
   echo  Node.js bulunamadi. https://nodejs.org adresinden LTS surumunu kurup bu dosyayi tekrar calistir.
