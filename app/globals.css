@@ -55,6 +55,16 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-}@media (prefers-reduced-motion: reduce) {
+}
+
+/* Tarayıcının kaydırma çubuğu gizli; yerine soldaki çizgi göstergesi var (ScrollRail). Kaydırma çalışmaya devam eder. */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

@@ -10,6 +10,7 @@ export const dict = {
   tr: {
     role: "Mimar",
     nav: {
+      intro: "Giriş",
       about: "Hakkımda",
       experience: "Deneyim",
       projects: "Projeler",
@@ -22,6 +23,7 @@ export const dict = {
     menu: "Menü",
     close: "Kapat",
     skip: "İçeriğe geç",
+    readProgress: "Okuma ilerlemesi",
     hero: {
       available: "Yeni projelere ve iş birliklerine açık",
       intro: "Binaları tasarlıyor, BIM ile kuruyor, tekrar eden işleri Revit API ile otomatikleştiriyorum.",
@@ -81,6 +83,7 @@ export const dict = {
   en: {
     role: "Architect",
     nav: {
+      intro: "Intro",
       about: "About",
       experience: "Experience",
       projects: "Projects",
@@ -93,6 +96,7 @@ export const dict = {
     menu: "Menu",
     close: "Close",
     skip: "Skip to content",
+    readProgress: "Reading progress",
     hero: {
       available: "Open to new projects and collaborations",
       intro: "I design buildings, set them up in BIM, and automate the repetitive work with the Revit API.",

@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 export function Hero({ lang, t }: { lang: Locale; t: Dict }) {
   const cvHref = `mailto:${site.email}?subject=${encodeURIComponent(t.hero.cvSubject)}`;
   return (
-    <section className="border-b border-line">
+    <section id="top" className="scroll-mt-20 border-b border-line">
       <div className="mx-auto max-w-[1440px] px-5 pb-14 pt-16 md:px-10 md:pb-20 md:pt-24">
         <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1.0] tracking-[-0.045em]">
           {site.name}

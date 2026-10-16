@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ScrollRail } from "@/components/ScrollRail";
 import { ThemeSync } from "@/components/ThemeSync";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -59,6 +60,13 @@ export default async function LangLayout({
           {children}
         </main>
         <Footer t={t} />
+        <ScrollRail
+          items={(["intro", "about", "experience", "projects", "bim", "services", "contact"] as const).map((id) => ({
+            id: id === "intro" ? "top" : id,
+            label: t.nav[id],
+          }))}
+          progressLabel={t.readProgress}
+        />
       </body>
     </html>
   );
