@@ -31,6 +31,18 @@ export const toolCategories = {
 
 export type ToolCategory = keyof typeof toolCategories;
 
+// Her grup için kısa genel açıklama
+export const toolCategoryText: Record<ToolCategory, Localized> = {
+  modeling: {
+    tr: "CAD'den gelen odaları Revit'e aktarır; döşeme, duvar, tavan ve süpürgelik kaplamalarını oda bilgisine göre tek seferde modeller. Parametre bazlı filtrelerle modeli toplu düzenler.",
+    en: "Brings rooms from CAD into Revit and models floor, wall, ceiling and skirting finishes from room data in one go. Parameter-based filters let you edit the model in bulk.",
+  },
+  docs: {
+    tr: "Metraj cetvellerini, Excel çıktılarını, görünümleri ve paftaları otomatik hazırlar. Yüzlerce pafta ve görünümü satır bazlı ayarlarla tek seferde oluşturur.",
+    en: "Prepares quantity schedules, Excel exports, views and sheets automatically. Creates hundreds of sheets and views at once, set up row by row.",
+  },
+};
+
 // BIMGoal paketindeki 12 araç (bimgoal.tools ile aynı sıra ve adlar)
 export const bimgoalTools: { name: string; text: Localized; category: ToolCategory }[] = [
   {
