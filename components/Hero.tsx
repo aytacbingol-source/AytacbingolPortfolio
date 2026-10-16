@@ -12,7 +12,9 @@ export function Hero({ lang, t }: { lang: Locale; t: Dict }) {
         <p className="mt-4 text-base text-muted md:text-lg">
           {t.role} · {site.focus.slice(0, 3).join(" | ")}
         </p>
-        <p className="mt-8 max-w-[36ch] text-xl leading-snug tracking-tight md:text-2xl">{t.hero.intro}</p>
+        <p className="mt-8 max-w-[36ch] text-xl leading-snug tracking-tight md:text-2xl">
+          {t.hero.introLead} <span className="text-muted">{t.hero.introRest}</span>
+        </p>
 
         <div className="mt-12 flex flex-wrap items-end justify-between gap-8">
           <div>

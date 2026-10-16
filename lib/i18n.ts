@@ -24,7 +24,9 @@ export const dict = {
     skip: "İçeriğe geç",
     hero: {
       available: "Yeni projelere ve iş birliklerine açık",
-      intro: "Binaları tasarlıyor, BIM ile kuruyor ve tekrar eden işleri Revit API ile otomatikleştiriyorum.",
+      intro: "Binaları tasarlıyor, BIM ile kuruyor, tekrar eden işleri Revit API ile otomatikleştiriyorum.",
+      introLead: "Binaları tasarlıyor, BIM ile kuruyor,",
+      introRest: "tekrar eden işleri Revit API ile otomatikleştiriyorum.",
       talk: "İletişime geç",
       cv: "CV iste",
       cvSubject: "CV talebi",
@@ -94,6 +96,8 @@ export const dict = {
     hero: {
       available: "Open to new projects and collaborations",
       intro: "I design buildings, set them up in BIM, and automate the repetitive work with the Revit API.",
+      introLead: "I design buildings, set them up in BIM,",
+      introRest: "and automate the repetitive work with the Revit API.",
       talk: "Get in touch",
       cv: "Request CV",
       cvSubject: "CV request",
