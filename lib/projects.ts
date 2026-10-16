@@ -72,7 +72,7 @@ export const projects: Project[] = [
         en: "The project was built in Revit from start to finish. Room schedules and finish data were generated directly from the model.",
       },
     ],
-    images: [],
+    images: ["/projects/ilkokul-kampusu/01.jpg", "/projects/ilkokul-kampusu/02.jpg", "/projects/ilkokul-kampusu/03.jpg", "/projects/ilkokul-kampusu/04.jpg", "/projects/ilkokul-kampusu/05.jpg", "/projects/ilkokul-kampusu/06.jpg"],
     featured: true,
   },
   {
@@ -97,7 +97,7 @@ export const projects: Project[] = [
         en: "The blocks step down with the slope of the site. Every home has at least two aspects.",
       },
     ],
-    images: [],
+    images: ["/projects/bahce-konutlari/01.jpg", "/projects/bahce-konutlari/02.jpg", "/projects/bahce-konutlari/03.jpg", "/projects/bahce-konutlari/04.jpg", "/projects/bahce-konutlari/05.jpg"],
     featured: true,
   },
   {

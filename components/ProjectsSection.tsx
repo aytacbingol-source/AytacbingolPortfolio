@@ -58,7 +58,11 @@ function Gallery({ p, lang, label, onOpen }: { p: Project; lang: Locale; label: 
                 i === cur ? "shadow-[inset_0_-2px_0_var(--ink)]" : ""
               }`}
             >
-              <span className={`absolute inset-0 transition-opacity duration-200 ${i === cur ? "opacity-100" : "opacity-45 hover:opacity-100"}`}>
+              <span
+                className={`absolute inset-0 transition-[filter,opacity] duration-300 ${
+                  i === cur ? "grayscale-0" : "opacity-80 grayscale"
+                }`}
+              >
                 <ProjectImage src={p.images[i]} seed={`${p.slug}-${i}`} tone={tone(i)} alt="" sizes="10vw" />
               </span>
             </button>
@@ -70,7 +74,7 @@ function Gallery({ p, lang, label, onOpen }: { p: Project; lang: Locale; label: 
               aria-label={`${label}: ${p.title[lang]}`}
               className="relative grid aspect-[4/3] cursor-zoom-in place-items-center overflow-hidden bg-surface"
             >
-              <span className="absolute inset-0 opacity-45">
+              <span className="absolute inset-0 opacity-50 grayscale">
                 <ProjectImage src={p.images[MAX_THUMBS - 1]} seed={`${p.slug}-${MAX_THUMBS - 1}`} tone={tone(MAX_THUMBS - 1)} alt="" sizes="10vw" />
               </span>
               <span className="relative text-sm font-medium">+{total - (MAX_THUMBS - 1)}</span>
