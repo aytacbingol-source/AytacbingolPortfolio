@@ -35,8 +35,9 @@ export function Header({ lang, t }: { lang: Locale; t: Dict }) {
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              data-label={l.label}
-              className={`navlink hover:font-semibold ${isActive(l.href) ? "font-semibold" : ""}`}
+              className={`underline-offset-[6px] transition-colors hover:text-ink hover:underline ${
+                isActive(l.href) ? "text-ink underline" : "text-muted"
+              }`}
             >
               {l.label}
             </Link>
