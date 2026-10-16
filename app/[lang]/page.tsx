@@ -84,7 +84,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <div className={`${wrap} py-20 md:py-28`}>
           <SectionHead no="03" title={t.projects.label} aside={`(${String(projects.length).padStart(2, "0")})`} />
           <div className="mt-8">
-            <ProjectsSection projects={projects} lang={lang} t={t.projects} />
+            <ProjectsSection projects={projects} lang={lang} dict={t} />
           </div>
         </div>
       </section>
