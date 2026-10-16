@@ -20,7 +20,10 @@ export type Project = {
   title: Localized;
   year: string;
   location: Localized;
-  area?: string; // örn. "12.400 m²"
+  /** İnşaat alanı, örn. "12.400 m²" */
+  area?: string;
+  /** İşveren */
+  client: Localized;
   role: Localized;
   status: Localized;
   summary: Localized;
@@ -52,6 +55,7 @@ export const projects: Project[] = [
     year: "2025",
     location: { tr: "İstanbul", en: "Istanbul" },
     area: "8.600 m²",
+    client: { tr: "İl Milli Eğitim Müdürlüğü (örnek)", en: "Provincial Directorate of Education (sample)" },
     role: { tr: "Proje mimarı, BIM koordinasyonu", en: "Project architect, BIM coordination" },
     status: { tr: "Uygulama projesi", en: "Construction documents" },
     summary: {
@@ -80,6 +84,7 @@ export const projects: Project[] = [
     year: "2024",
     location: { tr: "Bursa", en: "Bursa" },
     area: "14.200 m²",
+    client: { tr: "Özel konut geliştiricisi (örnek)", en: "Private housing developer (sample)" },
     role: { tr: "Tasarım ekibi", en: "Design team" },
     status: { tr: "Tamamlandı", en: "Completed" },
     summary: {
@@ -104,6 +109,7 @@ export const projects: Project[] = [
     year: "2023",
     location: { tr: "Kocaeli", en: "Kocaeli" },
     area: "42.000 m²",
+    client: { tr: "Lojistik firması (örnek)", en: "Logistics company (sample)" },
     role: { tr: "BIM yöneticisi", en: "BIM manager" },
     status: { tr: "Tamamlandı", en: "Completed" },
     summary: {
@@ -128,6 +134,7 @@ export const projects: Project[] = [
     year: "2024",
     location: { tr: "İstanbul", en: "Istanbul" },
     area: "650 m²",
+    client: { tr: "Perakende markası (örnek)", en: "Retail brand (sample)" },
     role: { tr: "İç mimari tasarım", en: "Interior design" },
     status: { tr: "Tamamlandı", en: "Completed" },
     summary: {
@@ -151,6 +158,7 @@ export const projects: Project[] = [
     year: "2025",
     location: { tr: "Ankara", en: "Ankara" },
     area: "3.200 m²",
+    client: { tr: "Yazılım şirketi (örnek)", en: "Software company (sample)" },
     role: { tr: "Proje mimarı", en: "Project architect" },
     status: { tr: "Devam ediyor", en: "In progress" },
     summary: {
@@ -175,6 +183,7 @@ export const projects: Project[] = [
     year: "2023",
     location: { tr: "Muğla", en: "Muğla" },
     area: "18.500 m²",
+    client: { tr: "Otel yatırımcısı (örnek)", en: "Hotel investor (sample)" },
     role: { tr: "Tasarım ve BIM koordinasyonu", en: "Design and BIM coordination" },
     status: { tr: "Tamamlandı", en: "Completed" },
     summary: {
@@ -199,6 +208,7 @@ export const projects: Project[] = [
     year: "2022",
     location: { tr: "İzmir", en: "Izmir" },
     area: "480 m²",
+    client: { tr: "Restoran işletmesi (örnek)", en: "Restaurant operator (sample)" },
     role: { tr: "Tasarım", en: "Design" },
     status: { tr: "Tamamlandı", en: "Completed" },
     summary: {
@@ -222,6 +232,7 @@ export const projects: Project[] = [
     year: "2024",
     location: { tr: "Konya", en: "Konya" },
     area: "26.000 m²",
+    client: { tr: "İl Sağlık Müdürlüğü (örnek)", en: "Provincial Health Directorate (sample)" },
     role: { tr: "BIM koordinatörü", en: "BIM coordinator" },
     status: { tr: "Uygulama projesi", en: "Construction documents" },
     summary: {
@@ -244,6 +255,7 @@ export const projects: Project[] = [
     title: { tr: "Kent Meydanı Yarışması", en: "City Square Competition" },
     year: "2022",
     location: { tr: "Eskişehir", en: "Eskişehir" },
+    client: { tr: "Belediye, ulusal yarışma (örnek)", en: "Municipality, national competition (sample)" },
     role: { tr: "Ekip üyesi", en: "Team member" },
     status: { tr: "Yarışma önerisi", en: "Competition entry" },
     summary: {

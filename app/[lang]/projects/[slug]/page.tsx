@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectFacts } from "@/components/ProjectFacts";
 import { ProjectImage } from "@/components/ProjectImage";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { categories, getProject, offices, projects } from "@/lib/projects";
+import { getProject, projects } from "@/lib/projects";
 
 type Params = Promise<{ lang: string; slug: string }>;
 
@@ -28,15 +29,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const index = projects.findIndex((x) => x.slug === p.slug);
   const next = projects[(index + 1) % projects.length];
 
-  const facts = [
-    { k: t.projects.category, v: categories[p.category][lang] },
-    { k: t.projects.year, v: p.year },
-    { k: t.projects.location, v: p.location[lang] },
-    p.area ? { k: t.projects.area, v: p.area } : null,
-    { k: t.projects.office, v: offices[p.office]?.name ?? "" },
-    { k: t.projects.role, v: p.role[lang] },
-    { k: t.projects.status, v: p.status[lang] },
-  ].filter(Boolean) as { k: string; v: string }[];
 
   const gallery = p.images.slice(1);
 
@@ -56,17 +48,11 @@ export default async function ProjectPage({ params }: { params: Params }) {
       </div>
 
       <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-20 md:grid-cols-4 md:px-10 md:py-28">
-        <dl className="border-t border-ink md:sticky md:top-24 md:self-start">
-          {facts.map((f) => (
-            <div key={f.k} className="flex justify-between gap-4 border-b border-line py-3 text-sm">
-              <dt className="text-muted">{f.k}</dt>
-              <dd className="text-right">{f.v}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="md:sticky md:top-24 md:col-span-2 md:self-start">
+          <ProjectFacts p={p} lang={lang} t={t.projects} />
+        </div>
         <div className="md:col-span-2 md:col-start-3">
-          <p className="text-2xl leading-snug tracking-tight md:text-3xl">{p.summary[lang]}</p>
-          <div className="mt-10 space-y-6 text-lg leading-relaxed text-muted">
+          <div className="space-y-6 text-lg leading-relaxed text-muted [&>p:first-child]:text-xl [&>p:first-child]:text-ink">
             {p.body.map((b, i) => (
               <p key={i}>{b[lang]}</p>
             ))}

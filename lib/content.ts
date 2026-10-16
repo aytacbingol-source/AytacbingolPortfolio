@@ -94,8 +94,8 @@ export const services: { title: Localized; text: Localized }[] = [
   {
     title: { tr: "Revit otomasyonu", en: "Revit automation" },
     text: {
-      tr: "Ekibinizin tekrar eden işleri için Revit API ve pyRevit ile özel araçlar.",
-      en: "Custom tools on the Revit API and pyRevit for your team's repetitive tasks.",
+      tr: "Ekibinizin tekrar eden işleri için BIMGoal araçları ve Revit API ile geliştirilen özel çözümler.",
+      en: "BIMGoal tools and custom Revit API solutions for your team's repetitive tasks.",
     },
   },
   {

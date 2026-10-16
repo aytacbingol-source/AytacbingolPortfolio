@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Dict, Locale } from "@/lib/i18n";
 import { categories, offices, type Category, type Project } from "@/lib/projects";
+import { ProjectFacts } from "./ProjectFacts";
 import { ProjectImage } from "./ProjectImage";
 
 function Gallery({ p, lang }: { p: Project; lang: Locale }) {
@@ -76,20 +77,14 @@ export function ProjectsSection({ projects, lang, t }: { projects: Project[]; la
             {items.map((p) => (
               <article key={p.slug} className="grid gap-6 border-b border-line py-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-10">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs text-muted">{p.year}</span>
-                    <span className="border border-line px-2 py-0.5 text-xs">{categories[p.category][lang]}</span>
-                  </div>
-                  <h4 className="mt-3 text-2xl font-medium tracking-[-0.025em]">
+                  <h4 className="text-2xl font-medium tracking-[-0.025em]">
                     <Link href={`/${lang}/projects/${p.slug}`} className="underline-offset-4 hover:underline">
                       {p.title[lang]}
                     </Link>
                   </h4>
-                  <p className="mt-2 max-w-[42ch] text-muted">{p.summary[lang]}</p>
-                  <p className="mt-4 text-sm text-muted">
-                    {p.location[lang]}
-                    {p.area ? `, ${p.area}` : ""} · {p.role[lang]}
-                  </p>
+                  <div className="mt-4">
+                    <ProjectFacts p={p} lang={lang} t={t} />
+                  </div>
                   <Link href={`/${lang}/projects/${p.slug}`} className="mt-5 inline-block text-sm underline underline-offset-4">
                     {t.view}
                   </Link>
