@@ -25,54 +25,129 @@ export const bimAreas: { title: string; text: Localized }[] = [
 ];
 
 export const toolCategories = {
-  cad: { tr: "CAD → Revit", en: "CAD → Revit" },
-  modeling: { tr: "Modelleme", en: "Modeling" },
-  model: { tr: "Model yönetimi", en: "Model management" },
-  docs: { tr: "Dokümantasyon", en: "Documentation" },
+  modeling: { tr: "Modelleme araçları", en: "Modeling tools" },
+  docs: { tr: "Dokümantasyon araçları", en: "Documentation tools" },
 } satisfies Record<string, Localized>;
 
 export type ToolCategory = keyof typeof toolCategories;
 
-export const bimgoalTools: { name: Localized; text: Localized; category: ToolCategory }[] = [
+// BIMGoal paketindeki 12 araç (bimgoal.tools ile aynı sıra ve adlar)
+export const bimgoalTools: { name: string; text: Localized; category: ToolCategory }[] = [
   {
-    name: { tr: "CAD'den Revit'e mahal verisi", en: "CAD-to-Revit room data" },
-    text: {
-      tr: "CAD çizimindeki mahal bilgilerini Revit odalarına aktarır.",
-      en: "Transfers room information from CAD drawings into Revit rooms.",
-    },
-    category: "cad",
-  },
-  {
-    name: { tr: "Otomatik kaplama", en: "Automated finishes" },
-    text: {
-      tr: "Mahal bilgisine göre döşeme, duvar ve tavan kaplamalarını oluşturur.",
-      en: "Creates floor, wall and ceiling finishes from room data.",
-    },
+    name: "CAD to Room",
     category: "modeling",
+    text: {
+      tr: "CSV'den yüzlerce odayı koordinat ve parametrelerle birlikte tek adımda oluşturur.",
+      en: "Creates hundreds of rooms from a CSV in one step, with coordinates and parameters.",
+    },
   },
   {
-    name: { tr: "Eleman filtreleme", en: "Element filtering" },
+    name: "Floor Finish",
+    category: "modeling",
     text: {
-      tr: "Modeldeki elemanları parametrelere göre hızlıca bulur ve seçer.",
-      en: "Finds and selects model elements by their parameters.",
+      tr: "Oda parametrelerine göre her odada otomatik döşeme kaplaması. Kapı eşikleri birleşir.",
+      en: "Automatic floor finishes in every room from room parameters. Door thresholds are joined.",
     },
-    category: "model",
   },
   {
-    name: { tr: "Metraj", en: "Quantity takeoffs" },
+    name: "Ceiling Finish",
+    category: "modeling",
     text: {
-      tr: "Modelden metraj listelerini çıkarır.",
-      en: "Extracts quantity lists from the model.",
+      tr: "Oda bazlı tavan kaplaması. 3 farklı yükseklik hesaplama yöntemi.",
+      en: "Room-based ceiling finishes with 3 ways to calculate height.",
     },
+  },
+  {
+    name: "Wall Finish",
+    category: "modeling",
+    text: {
+      tr: "Linkli modellerde çalışan akıllı duvar kaplama ve void sistemi.",
+      en: "Smart wall finishes and voids that also work with linked models.",
+    },
+  },
+  {
+    name: "Skirting",
+    category: "modeling",
+    text: {
+      tr: "Odaların çevresine süpürgelik. Kapı kasa genişlikleri otomatik hesaplanır.",
+      en: "Skirting around every room, with door frame widths calculated automatically.",
+    },
+  },
+  {
+    name: "Element Filter",
+    category: "modeling",
+    text: {
+      tr: "Parametre bazlı filtreler, toplu düzenleme, Excel export-import.",
+      en: "Parameter-based filters, bulk editing and Excel export-import.",
+    },
+  },
+  {
+    name: "Quantity Takeoff",
     category: "docs",
+    text: {
+      tr: "BIMGoal ile oluşturulan elemanlar için hassas metraj cetvelleri.",
+      en: "Precise quantity schedules for elements created with BIMGoal.",
+    },
   },
   {
-    name: { tr: "Pafta hazırlığı", en: "Sheet preparation" },
-    text: {
-      tr: "Paftaları ve görünüşleri toplu olarak hazırlar.",
-      en: "Prepares sheets and views in batches.",
-    },
+    name: "Non-Quantified",
     category: "docs",
+    text: {
+      tr: "Hiçbir metraja girmeyen elementleri izole eden 3D görünüm.",
+      en: "A 3D view that isolates elements missing from every quantity schedule.",
+    },
+  },
+  {
+    name: "Schedules Export",
+    category: "docs",
+    text: {
+      tr: "Tüm schedule verilerini profesyonel biçimli Excel'e toplu olarak aktarır.",
+      en: "Exports all schedule data to professionally formatted Excel in one go.",
+    },
+  },
+  {
+    name: "View Duplicator",
+    category: "docs",
+    text: {
+      tr: "Bir görünümden yüzlerce kopya: isim, template ve scope box satır bazında.",
+      en: "Hundreds of copies from one view, with name, template and scope box set per row.",
+    },
+  },
+  {
+    name: "Sheet Creator",
+    category: "docs",
+    text: {
+      tr: "Yüzlerce paftayı tek seferde, satır bazlı ince ayarlarla.",
+      en: "Hundreds of sheets at once, fine-tuned row by row.",
+    },
+  },
+  {
+    name: "View to Sheet",
+    category: "docs",
+    text: {
+      tr: "Bir paftadaki viewport konumunu tüm paftalara aynı şekilde uygular.",
+      en: "Applies a viewport's position on one sheet to every other sheet.",
+    },
+  },
+];
+
+// BIMGoal iş akışı (sıralı adımlar)
+export const bimgoalSteps: { title: Localized; text: Localized }[] = [
+  {
+    title: { tr: "Odaları seç", en: "Select rooms" },
+    text: { tr: "CAD'den gelen ya da modeldeki odalar tek listede.", en: "Rooms from CAD or the model, in one list." },
+  },
+  {
+    title: { tr: "Kaplama ata", en: "Assign finishes" },
+    text: { tr: "Döşeme, duvar, tavan ve süpürgelik tiplerini eşleştir.", en: "Match floor, wall, ceiling and skirting types." },
+  },
+  {
+    title: { tr: "Otomatik model", en: "Automatic model" },
+    text: { tr: "Kaplamalar tüm odalarda tek seferde oluşur.", en: "Finishes are built in every room at once." },
+  },
+  {
+    title: { tr: "Pafta & metraj", en: "Sheets & quantities" },
+    text: { tr: "Paftalar, görünümler ve metraj cetvelleri hazır.", en: "Sheets, views and quantity schedules are ready." },
   },
 ];
 

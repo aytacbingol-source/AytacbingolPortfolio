@@ -17,6 +17,6 @@ export const site = {
   stats: [
     { value: "8+", label: { tr: "yıl deneyim", en: "years of experience" } },
     { value: "40+", label: { tr: "proje", en: "projects" } },
-    { value: "5", label: { tr: "BIMGoal aracı", en: "BIMGoal tools" } },
+    { value: "12", label: { tr: "BIMGoal aracı", en: "BIMGoal tools" } },
   ],
 };

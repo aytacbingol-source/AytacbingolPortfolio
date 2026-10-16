@@ -4,7 +4,7 @@ import { Contact } from "@/components/Contact";
 import { Hero } from "@/components/Hero";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { SectionHead } from "@/components/SectionHead";
-import { bimAreas, education, experience, services, software } from "@/lib/content";
+import { bimgoalSteps, education, experience, services, software } from "@/lib/content";
 import { getDict, isLocale } from "@/lib/i18n";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
@@ -93,32 +93,65 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <section id="bim" className="scroll-mt-20 border-t border-line bg-surface">
         <div className={`${wrap} py-20 md:py-28`}>
           <SectionHead no="04" title={t.bim.label} />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+
+          <div className="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
             <div>
-              <p className="text-5xl font-semibold tracking-[-0.045em] md:text-7xl">BIMGoal</p>
-              <p className="mt-6 max-w-[44ch] text-lg leading-relaxed text-muted">{t.bim.lead}</p>
+              <p className="flex items-center gap-4 text-6xl font-semibold tracking-[-0.05em] md:text-8xl">
+                BIMGoal
+                <span className="mt-3 inline-block h-3 w-3 bg-accent md:h-4 md:w-4" aria-hidden="true" />
+              </p>
+              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-muted">{t.bim.lead}</p>
+
+              <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
+                {[
+                  ["12", t.bim.statTools],
+                  ["2020–2024", t.bim.statRevit],
+                  ["TR · EN", t.bim.statLang],
+                ].map(([v, l]) => (
+                  <div key={l}>
+                    <dt className="sr-only">{l}</dt>
+                    <dd className="text-3xl font-medium leading-none tracking-[-0.03em] tabular-nums">{v}</dd>
+                    <dd className="mt-1.5 text-xs text-muted">{l}</dd>
+                  </div>
+                ))}
+              </dl>
+
               <a
                 href={site.bimgoal}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-8 inline-block border border-ink px-5 py-3 text-sm hover:bg-ink hover:text-paper"
+                className="accent-btn mt-10 inline-flex items-center gap-3 px-6 py-3.5 text-sm font-medium"
               >
                 {t.bim.visit}
+                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
+                  <path d="M5 11 L11 5 M6 5 H11 V10" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                </svg>
               </a>
-              <h3 className="mt-12 text-sm text-muted">{t.bim.areas}</h3>
-              <ul className="mt-3 border-t border-ink">
-                {bimAreas.map((a) => (
-                  <li key={a.title} className="border-b border-line py-4">
-                    <span className="font-medium">{a.title}</span>
-                    <span className="mt-1 block text-sm text-muted">{a.text[lang]}</span>
+            </div>
+
+            <div>
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{t.bim.how}</h3>
+              <ol className="mt-6">
+                {bimgoalSteps.map((st, i) => (
+                  <li key={st.title.en} className="relative grid grid-cols-[3rem_minmax(0,1fr)] pb-8 last:pb-0">
+                    {i < bimgoalSteps.length - 1 && (
+                      <span className="absolute left-[0.6875rem] top-7 bottom-1 w-px bg-line" aria-hidden="true" />
+                    )}
+                    <span className="relative grid h-6 w-6 place-items-center border border-accent font-mono text-[10px] text-accent tabular-nums">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="text-lg font-medium leading-6 tracking-[-0.015em]">{st.title[lang]}</p>
+                      <p className="mt-1 text-sm text-muted">{st.text[lang]}</p>
+                    </div>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </div>
-            <div>
-              <h3 className="mb-4 text-sm text-muted">{t.bim.tools}</h3>
-              <BimTools lang={lang} allLabel={t.bim.all} />
-            </div>
+          </div>
+
+          <div className="mt-20">
+            <BimTools lang={lang} t={t.bim} />
           </div>
         </div>
       </section>
