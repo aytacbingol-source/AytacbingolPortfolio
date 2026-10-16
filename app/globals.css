@@ -10,7 +10,7 @@
   --ink: #000000;
   --muted: #666666;
   --line: #d6d6d4;
-  /* BIMGoal turuncusu: yalnızca BIM bölümünde */
+  /* BIMGoal turuncusu: yalnızca bimgoal.tools butonunda */
   --accent: #e85d0c;
 }
 .dark {
@@ -121,7 +121,7 @@ html::-webkit-scrollbar {
   .viewer-in, .viewer-overlay, .viewer-panel, .viewer-overlay.is-closing, .viewer-overlay.is-closing .viewer-panel { animation: none; }
 }
 
-/* BIMGoal vurgusu: transparan turuncu zemin, turuncu çerçeve; üzerine gelince ince taralı (hatch) doku */
+/* bimgoal.tools butonu: transparan turuncu zemin, turuncu çerçeve; üzerine gelince ince taralı (hatch) doku */
 .accent-btn {
   border: 1px solid var(--accent);
   color: var(--accent);
@@ -131,26 +131,5 @@ html::-webkit-scrollbar {
 .accent-btn:hover,
 .accent-btn:focus-visible {
   background-color: color-mix(in srgb, var(--accent) 14%, transparent);
-  background-image: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--accent) 30%, transparent) 0 1px, transparent 1px 7px);
-}
-.tool-card {
-  transition: border-color 0.25s, background-color 0.25s;
-}
-.tool-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-  background-color: color-mix(in srgb, var(--accent) 6%, transparent);
-  background-image: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--accent) 16%, transparent) 0 1px, transparent 1px 8px);
-}
-.tool-card:hover,
-.tool-card:focus-visible {
-  border-color: var(--accent);
-}
-.tool-card:hover::before,
-.tool-card:focus-visible::before {
-  opacity: 1;
+  background-image: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--accent) 22%, transparent) 0 1px, transparent 1px 7px);
 }

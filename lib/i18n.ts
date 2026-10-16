@@ -67,11 +67,6 @@ export const dict = {
       visit: "bimgoal.tools'u ziyaret et",
       areas: "Çalışma alanları",
       tools: "Araçlar",
-      how: "Nasıl çalışır",
-      statTools: "araç",
-      statRevit: "Revit sürümleri",
-      statLang: "dil",
-      open: "bimgoal.tools'ta incele",
     },
     viewer: {
       label: "Proje",
@@ -158,11 +153,6 @@ export const dict = {
       visit: "Visit bimgoal.tools",
       areas: "Areas of work",
       tools: "Tools",
-      how: "How it works",
-      statTools: "tools",
-      statRevit: "Revit versions",
-      statLang: "languages",
-      open: "See on bimgoal.tools",
     },
     viewer: {
       label: "Project",

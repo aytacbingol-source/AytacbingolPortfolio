@@ -131,26 +131,6 @@ export const bimgoalTools: { name: string; text: Localized; category: ToolCatego
   },
 ];
 
-// BIMGoal iş akışı (sıralı adımlar)
-export const bimgoalSteps: { title: Localized; text: Localized }[] = [
-  {
-    title: { tr: "Odaları seç", en: "Select rooms" },
-    text: { tr: "CAD'den gelen ya da modeldeki odalar tek listede.", en: "Rooms from CAD or the model, in one list." },
-  },
-  {
-    title: { tr: "Kaplama ata", en: "Assign finishes" },
-    text: { tr: "Döşeme, duvar, tavan ve süpürgelik tiplerini eşleştir.", en: "Match floor, wall, ceiling and skirting types." },
-  },
-  {
-    title: { tr: "Otomatik model", en: "Automatic model" },
-    text: { tr: "Kaplamalar tüm odalarda tek seferde oluşur.", en: "Finishes are built in every room at once." },
-  },
-  {
-    title: { tr: "Pafta & metraj", en: "Sheets & quantities" },
-    text: { tr: "Paftalar, görünümler ve metraj cetvelleri hazır.", en: "Sheets, views and quantity schedules are ready." },
-  },
-];
-
 export const services: { title: Localized; text: Localized }[] = [
   {
     title: { tr: "Mimari tasarım", en: "Architectural design" },
