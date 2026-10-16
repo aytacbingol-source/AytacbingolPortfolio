@@ -138,7 +138,7 @@ export function ProjectsSection({ projects, lang, dict }: { projects: Project[];
                       {p.title[lang]}
                     </button>
                   </h4>
-                  <div className="mt-4">
+                  <div className="mt-3">
                     <ProjectFacts p={p} lang={lang} t={t} />
                   </div>
                 </div>

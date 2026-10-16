@@ -17,15 +17,34 @@ export function factRows(p: Project, lang: Locale, t: Dict["projects"]): FactRow
   ];
 }
 
+// Proje kartındaki künye: başlığın altında yıl · kategori · konum satırı,
+// ardından genel bakış metni, en altta inşaat alanı, işveren ve rol.
 export function ProjectFacts({ p, lang, t }: { p: Project; lang: Locale; t: Dict["projects"] }) {
+  const meta = [p.year, categories[p.category][lang], p.location[lang]];
+  const rows = [
+    { k: t.area, v: p.area ?? "—" },
+    { k: t.client, v: p.client[lang] },
+    { k: t.role, v: p.role[lang] },
+  ];
   return (
-    <dl className="border-t border-ink">
-      {factRows(p, lang, t).map((r) => (
-        <div key={r.k} className="grid grid-cols-[8.5rem_minmax(0,1fr)] gap-4 border-b border-line py-2.5 text-sm">
-          <dt className="text-muted">{r.k}</dt>
-          <dd className={r.long ? "leading-relaxed" : "tabular-nums"}>{r.v}</dd>
-        </div>
-      ))}
-    </dl>
+    <div>
+      <p className="flex flex-wrap items-center gap-y-1 text-sm text-muted">
+        {meta.map((m, i) => (
+          <span key={i} className="flex items-center">
+            {i > 0 && <span className="mx-3 inline-block h-3 w-px bg-line" aria-hidden="true" />}
+            <span className={i === 0 ? "text-ink tabular-nums" : ""}>{m}</span>
+          </span>
+        ))}
+      </p>
+      <p className="mt-5 max-w-[44ch] text-base leading-relaxed">{p.summary[lang]}</p>
+      <dl className="mt-6 grid grid-cols-[auto_minmax(0,1fr)] gap-x-5 gap-y-2 text-[13px]">
+        {rows.map((r) => (
+          <div key={r.k} className="contents">
+            <dt className="text-muted">{r.k}</dt>
+            <dd className="tabular-nums">{r.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }
