@@ -7,34 +7,77 @@ import { ProjectFacts } from "./ProjectFacts";
 import { ProjectImage } from "./ProjectImage";
 import { ProjectViewer, imageCount } from "./ProjectViewer";
 
+// Kapak ve küçük resim şeridi: küçük resmin üzerine gelince kapak o görsele döner,
+// kapağa ya da küçük resme tıklayınca tam ekran görüntüleyici açılır.
+const MAX_THUMBS = 6;
+
 function Gallery({ p, lang, label, onOpen }: { p: Project; lang: Locale; label: string; onOpen: (i: number) => void }) {
   const total = imageCount(p);
-  const slots = [0, 1, 2].filter((i) => i < Math.max(total, 3));
-  const more = total - 3;
+  const [cur, setCur] = useState(0);
+  const all = Array.from({ length: total }, (_, i) => i);
+  const overflow = total > MAX_THUMBS;
+  const thumbs = overflow ? all.slice(0, MAX_THUMBS - 1) : all;
+  const tone = (i: number) => (i % 3 === 1 ? "mid" : "light");
+
   return (
-    <div className="grid aspect-[2/1] grid-cols-[2fr_1fr] grid-rows-2 gap-1.5">
-      {slots.map((i) => (
-        <button
-          key={i}
-          type="button"
-          onClick={() => onOpen(i)}
-          aria-label={`${label}: ${p.title[lang]} ${i + 1}`}
-          className={`group relative cursor-zoom-in overflow-hidden bg-surface ${i === 0 ? "row-span-2" : ""}`}
-        >
-          <span className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
+    <div>
+      <button
+        type="button"
+        onClick={() => onOpen(cur)}
+        aria-label={`${label}: ${p.title[lang]} ${cur + 1}`}
+        className="relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden bg-surface"
+      >
+        {all.map((i) => (
+          <span
+            key={i}
+            aria-hidden={i !== cur}
+            className={`absolute inset-0 transition-opacity duration-300 ${i === cur ? "opacity-100" : "opacity-0"}`}
+          >
             <ProjectImage
               src={p.images[i]}
               seed={`${p.slug}-${i}`}
-              tone={i === 1 ? "mid" : "light"}
+              tone={tone(i)}
               alt={`${p.title[lang]} ${i + 1}`}
-              sizes={i === 0 ? "(min-width: 1024px) 40vw, 66vw" : "(min-width: 1024px) 20vw, 33vw"}
+              sizes="(min-width: 1024px) 55vw, 100vw"
             />
           </span>
-          {i === 2 && more > 0 && (
-            <span className="absolute inset-0 grid place-items-center bg-black/55 text-lg font-medium text-white">+{more}</span>
+        ))}
+      </button>
+
+      {total > 1 && (
+        <div className="mt-1.5 grid grid-cols-6 gap-1.5">
+          {thumbs.map((i) => (
+            <button
+              key={i}
+              type="button"
+              onMouseEnter={() => setCur(i)}
+              onFocus={() => setCur(i)}
+              onClick={() => onOpen(i)}
+              aria-label={`${label}: ${p.title[lang]} ${i + 1}`}
+              className={`relative aspect-[4/3] cursor-zoom-in overflow-hidden bg-surface ${
+                i === cur ? "shadow-[inset_0_-2px_0_var(--ink)]" : ""
+              }`}
+            >
+              <span className={`absolute inset-0 transition-opacity duration-200 ${i === cur ? "opacity-100" : "opacity-45 hover:opacity-100"}`}>
+                <ProjectImage src={p.images[i]} seed={`${p.slug}-${i}`} tone={tone(i)} alt="" sizes="10vw" />
+              </span>
+            </button>
+          ))}
+          {overflow && (
+            <button
+              type="button"
+              onClick={() => onOpen(MAX_THUMBS - 1)}
+              aria-label={`${label}: ${p.title[lang]}`}
+              className="relative grid aspect-[4/3] cursor-zoom-in place-items-center overflow-hidden bg-surface"
+            >
+              <span className="absolute inset-0 opacity-45">
+                <ProjectImage src={p.images[MAX_THUMBS - 1]} seed={`${p.slug}-${MAX_THUMBS - 1}`} tone={tone(MAX_THUMBS - 1)} alt="" sizes="10vw" />
+              </span>
+              <span className="relative text-sm font-medium">+{total - (MAX_THUMBS - 1)}</span>
+            </button>
           )}
-        </button>
-      ))}
+        </div>
+      )}
     </div>
   );
 }
